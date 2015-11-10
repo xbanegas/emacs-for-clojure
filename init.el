@@ -130,3 +130,43 @@
 ;; Langauage-specific
 (load "setup-clojure.el")
 (load "setup-js.el")
+
+;; Org Mode Agenda
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+(setq org-agenda-files (file-expand-wildcards "~/Documents/todos/*.org"))
+(setq org-todo-keywords
+  '((sequence "TODO" "IN PROGRESS" "|" "DONE")))
+
+;; Enable mouse support
+(unless window-system
+  (require 'mouse)
+  (xterm-mouse-mode t)
+  (global-set-key [mouse-4] (lambda ()
+                              (interactive)
+                              (scroll-down 1)))
+  (global-set-key [mouse-5] (lambda ()
+                              (interactive)
+                              (scroll-up 1)))
+  (defun track-mouse (e))
+  (setq mouse-sel-mode t))
+  (setq mouse-drag-copy-region t)
+  (setq select-active-regions nil)
+  (global-set-key [mouse-2] 'mouse-yank-at-click)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 2)
+ '(org-agenda-files
+   (quote
+    ("~/Documents/todos/general.org" "~/Documents/todos/emacs.org" "~/Documents/todos/good_collar.org" "~/Documents/todos/python_meetup.org" "~/Documents/todos/someday-maybe.org" "~/Documents/todos/supreme.org"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(linum ((t (:foreground "green" :background "black" :box nil)))))

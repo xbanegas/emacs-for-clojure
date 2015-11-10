@@ -7,8 +7,15 @@
 ;; Turn off the menu bar at the top of each frame because it's distracting
 (menu-bar-mode -1)
 
-;; Show line numbers
+;; Show line numbers, columns
 (global-linum-mode)
+(setq linum-format " %4d ")
+(custom-set-faces '(linum ((t (:foreground "green" :background "black" :box nil)))) ) 
+(column-number-mode 1)
+(defface hl-line '((t (:background "black")))
+  "Face to use for `hl-line-face'." :group 'hl-line)
+(setq hl-line-face 'hl-line)
+(global-hl-line-mode t) ; turn it on for all modes by default
 
 ;; You can uncomment this to remove the graphical toolbar at the top. After
 ;; awhile, you won't need the toolbar.
@@ -26,7 +33,7 @@
 ;; for a more technical explanation.
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (add-to-list 'load-path "~/.emacs.d/themes")
-(load-theme 'tomorrow-night-bright t)
+(load-theme 'zenburn t)
 
 ;; increase font size for better readability
 (set-face-attribute 'default nil :height 140)
@@ -57,7 +64,7 @@
       mouse-yank-at-point t)
 
 ;; No cursor blinking, it's distracting
-(blink-cursor-mode 0)
+;; (blink-cursor-mode 0)
 
 ;; full path in title bar
 (setq-default frame-title-format "%b (%f)")
