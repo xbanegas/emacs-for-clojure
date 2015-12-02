@@ -74,3 +74,6 @@
 
 ;; no bell
 (setq ring-bell-function 'ignore)
+
+;; fontify code in code blocks
+(setq org-src-fontify-natively t)
